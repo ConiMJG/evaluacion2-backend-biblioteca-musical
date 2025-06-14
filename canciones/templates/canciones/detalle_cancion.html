@@ -1,0 +1,33 @@
+{% extends 'canciones/base.html' %}
+
+{% block titulo %}Detalle de canción{% endblock %}
+
+{% block contenido %}
+<h2>🎧 Detalle de la canción</h2>
+
+<ul>
+  <li><strong>Título:</strong> {{ cancion.titulo }}</li>
+  <li><strong>Artista:</strong> {{ cancion.artista }}</li>
+  <li><strong>Álbum:</strong> {{ cancion.album }}</li>
+  <li><strong>Género:</strong> {{ cancion.genero }}</li>
+  <li><strong>Duración:</strong> {{ cancion.duracion }} segundos</li>
+  <li><strong>Año de lanzamiento:</strong> {{ cancion.anio_lanzamiento }}</li>
+
+  <li><strong>Calificación:</strong>
+    {% for i in "12345"|make_list %}
+      {% if forloop.counter <= cancion.calificacion %}
+        ⭐
+      {% else %}
+        ☆
+      {% endif %}
+    {% endfor %}
+  </li>
+
+  <li><strong>Favorita:</strong> {{ cancion.favorita|yesno:"Sí,No" }}</li>
+  <li><strong>Reproducciones:</strong> {{ cancion.reproducciones }}</li>
+</ul>
+
+<a class="btn" href="{% url 'lista_canciones' %}">← Volver al listado</a>
+<a class="btn" href="{% url 'editar_cancion' cancion.id %}">✏️ Editar</a>
+<a class="btn" href="{% url 'eliminar_cancion' cancion.id %}">🗑️ Eliminar</a>
+{% endblock %}

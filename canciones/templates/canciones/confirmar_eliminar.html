@@ -1,0 +1,15 @@
+{% extends 'canciones/base.html' %}
+
+{% block titulo %}Eliminar canción{% endblock %}
+
+{% block contenido %}
+<h2>⚠️ ¿Estás segura de eliminar esta canción?</h2>
+
+<p><strong>{{ cancion.titulo }}</strong> – {{ cancion.artista }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn">Sí, eliminar</button>
+  <a href="{% url 'detalle_cancion' cancion.id %}" class="btn">Cancelar</a>
+</form>
+{% endblock %}

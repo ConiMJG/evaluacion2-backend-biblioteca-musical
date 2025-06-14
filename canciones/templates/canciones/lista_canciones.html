@@ -1,0 +1,24 @@
+{% extends 'canciones/base.html' %}
+
+{% block titulo %}Lista de Canciones{% endblock %}
+
+{% block contenido %}
+    <h2>📃 Lista de Canciones</h2>
+
+    <a class="btn" href="{% url 'crear_cancion' %}">➕ Agregar Nueva Canción</a>
+    
+    <ul>
+        {% for cancion in canciones %}
+            <li>
+                <strong>
+                    <a href="{% url 'detalle_cancion' cancion.id %}">
+                        {{ cancion.titulo }}
+                    </a>
+                </strong> 
+                - {{ cancion.artista }} ({{ cancion.anio_lanzamiento }})
+            </li>
+        {% empty %}
+            <li>No hay canciones registradas.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

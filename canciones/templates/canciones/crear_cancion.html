@@ -1,0 +1,15 @@
+{% extends 'canciones/base.html' %}
+
+{% block titulo %}Agregar canción{% endblock %}
+
+{% block contenido %}
+<h2>➕ Agregar nueva canción</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button type="submit" class="btn">Guardar canción</button>
+  <a href="{% url 'lista_canciones' %}" class="btn">Cancelar</a>
+</form>
+{% endblock %}
